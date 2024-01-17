@@ -1,0 +1,92 @@
+.search-box {
+  background-color: none; 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+  object-fit: cover;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 100px 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.search-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('https://img.freepik.com/free-photo/beautiful-landscape-beach-sea-ocean-with-empty-chair-deck-umbrella-nearly-coconut-palm-tree-with-white-cloud-blue-sky_74190-9981.jpg?w=996&t=st=1692247407~exp=1692248007~hmac=303ef9aab5bf7953fe3fbfa06c34f95d54e954af0cd2e42aaeed271a972d5da9'); 
+  filter: blur(1px);
+  z-index: -1;  
+}
+
+.input-location, 
+.input-date, 
+.select-guests, 
+.input-count, 
+.search-button {
+  flex: 1;  
+  margin: 0 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.search-button {
+  padding: 8px 16px;
+  border: none;
+  background-color: #fff;
+  color: blue;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #ececec;
+}
+
+@media (max-width: 768px) {  
+  .search-box {
+      flex-direction: column;  
+      align-items: stretch;    
+      padding: 10px;
+  }
+
+  .input-location, 
+  .input-date, 
+  .select-guests, 
+  .input-count, 
+  .search-button {
+      width: 100%;            
+      margin: 5px 0;          
+  }
+}
+
+
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .search-box {
+    flex-wrap: wrap;  
+    justify-content: space-between; 
+  }
+
+
+  .input-location, 
+  .input-date, 
+  .select-guests, 
+  .input-count, 
+  .search-button {
+    flex: 0 0 calc(33.33% - 20px); 
+    margin: 5px 10px; 
+  }
+}
+
+
+
+

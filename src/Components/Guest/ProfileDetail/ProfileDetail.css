@@ -1,0 +1,331 @@
+/* Font Awesome Import */
+@import "~font-awesome/css/font-awesome.min.css";
+
+/* General Styling */
+.profile-bg {
+  background-color: #f6f6f6;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.profile-container {
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  flex: 0 0 28%;
+}
+
+.profile-header {
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.profile-content {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.profile-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.profile-item h4 {
+  margin: 0;
+  color: #555;
+}
+
+.profile-pic-wrapper {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.profile-upload-label {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.details-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.privilege-section {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.privilege-card {
+  width: 22%;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.privilege-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 0.9rem;
+}
+
+.status-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  z-index: 10;
+  color: #333;
+}
+
+.privilege-card.bronze {
+  background: linear-gradient(to right, #b08d57, #d5ad6d);
+  color: white;
+}
+
+.privilege-card.silver,
+.privilege-card.gold,
+.privilege-card.platinum {
+  color: black;
+}
+
+.privilege-card.silver {
+  background: linear-gradient(to right, #a8a8a8, #c5c5c5);
+}
+
+.privilege-card.gold {
+  background: linear-gradient(to right, #d4af37, #ffd700);
+}
+
+.privilege-card.platinum {
+  background: linear-gradient(to right, #e5e4e2, #b3b3b3);
+}
+
+.privilege-card.locked {
+  filter: blur(2px);
+}
+
+.privilege-card-content {
+  position: relative;
+  z-index: 1;
+  padding-top: 40px;
+}
+
+.edit-profile-pic-btn {
+  position: absolute;
+  top: 50%;
+  right: -10px;
+  transform: translateY(-50%);
+  background-color: white;
+  z-index: 10;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.username-content {
+  display: flex;
+  align-items: center;
+}
+
+.edit-username-btn {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.edit-username-btn:hover {
+  color: #333;
+}
+
+.address-section {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  justify-content: flex-start;
+}
+
+.address-card {
+  width: 22%; 
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+  margin: 10px; /* Same as privilege-card */
+}
+
+
+
+.address-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.address-title {
+  margin: 0;
+  font-weight: 600;
+  flex-grow: 1;
+}
+
+.address-details p {
+  margin: 5px 0;
+}
+
+.edit-address-btn {
+  display: block;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 8px 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.edit-address-btn:hover {
+  background-color: #45a049;
+}
+
+.edit-address-btn .icon, 
+.add-address-btn .icon {
+  margin-left: 8px;
+}
+
+.edit-address-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 1.5em;
+  transition: color 0.3s;
+}
+
+.edit-address-btn:hover {
+  color: #555;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 992px) {
+  .profile-container,
+  .details-container {
+      flex: 1 0 100%;
+      margin-bottom: 20px;
+  }
+
+  .details-container {
+      flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile-row {
+      flex-direction: column;
+  }
+
+  .profile-item {
+      margin-bottom: 20px;
+  }
+
+  .privilege-card {
+      flex: 1 0 calc(50% - 20px);
+      margin: 10px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .profile-container {
+      max-width: none;
+  }
+
+  .privilege-card {
+      flex: 1 0 100%;
+      margin: 10px 0;
+  }
+}
+
+.edit-address-btn {
+  color: black;
+  align-self: center; /* Added this to align with the address text */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 1.5em;
+  transition: color 0.3s;
+}
+
+.edit-address-btn:hover {
+  color: #555;
+}
+
+.address-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* This ensures vertical alignment */
+}

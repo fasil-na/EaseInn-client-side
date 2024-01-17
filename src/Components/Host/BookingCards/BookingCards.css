@@ -1,0 +1,88 @@
+
+.booking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booking-status-section {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.active-heading {
+  color: #333;
+}
+
+.inactive-heading {
+  color: #999;
+}
+
+.booking-card {
+  display: flex;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  width: 500px; 
+  padding: 15px;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.hotel-image {
+  width: 200px;
+  height: 200px;
+  margin-right: 15px; 
+}
+
+.booking-details {
+  font-family: 'Arial', sans-serif;
+}
+
+.hotel-name {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 8px;
+  display: inline; 
+}
+
+.date,
+.room-type,
+.guest-count,
+.total-amount {
+  margin-bottom: 8px;
+}
+
+.status,
+.amount {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.status {
+  color: #27ae60;
+}
+
+.amount {
+  color: #e74c3c;
+}
+
+.cancel-button {
+  background-color: #ff3d3d; /* Red color for cancel */
+  color: #fff; /* White text color */
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: #e60000; /* Darker red on hover */
+}

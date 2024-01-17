@@ -1,0 +1,74 @@
+.grid-container {
+    padding: 40px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 40px; /* Space between cards */
+    background-color: #f4f4f4;
+}
+
+.card {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+}
+
+.card-media {
+    height: 180px;
+}
+
+.star-icon {
+    color: gold;
+}
+
+.card-header {
+    padding-bottom: 0;
+}
+
+.card-content {
+    padding-top: 8px;
+}
+
+.hotel-list-heading {
+    font-size: 2em;
+    margin: 20px 0;
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+}
+
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.pagination-button {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination-button:hover {
+    background-color: #d1d1d1;
+}
+
+.pagination-button:disabled {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+.page-indicator {
+    margin: 0 20px;
+}
+

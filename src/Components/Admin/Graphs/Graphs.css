@@ -1,0 +1,31 @@
+.half-page-container {
+    margin-top: 2%;
+    margin-left: 2%;
+    width: 45%;
+    float: left;
+  }
+  
+  .graph-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+  }
+  
+  .graph {
+    width: 100%;
+    max-width: 400px; /* Adjust the maximum width as needed */
+  }
+  
+  .graph-title {
+    text-align: center;
+  }
+  
+  .graph {
+    margin-top: 20px; /* Adjust the margin-top as needed */
+  }
+  
+  .graph-title {
+    text-align: center;
+    margin-top: 10px; /* Adjust the margin-top as needed */
+  }

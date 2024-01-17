@@ -1,0 +1,120 @@
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; 
+  }
+  
+  .approve-button, .reject-button {
+    width: 150px;  
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-align: center;  
+  }
+  
+  .approve-button:hover, .reject-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .approve-button {
+    background-color: #4CAF50; 
+    color: white;
+    margin-bottom: 50px;
+  }
+  
+  .reject-button {
+    background-color: #f44336; 
+    color: white;
+    margin-bottom: 50px;
+  }
+  
+  /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.request-details-container {
+  font-family: 'Roboto', sans-serif;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #F6F7F9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+h1, h3 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.general-info, .contact-info, .rooms-info, .hotel-images, .docs, .amenities {
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.star-icon {
+  color: #FFC107;
+}
+
+button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.approve-button {
+  background-color: #4CAF50;
+  color: #FFFFFF;
+}
+
+.reject-button {
+  background-color: #F44336;
+  color: #FFFFFF;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.general-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-info {
+  flex: 1; /* Takes remaining space */
+}
+
+.book-button {
+  margin-left: 10px; /* Adjust the margin as needed */
+  background-color: #ff5a5f; /* Airbnb red color, replace with your preferred color */
+  color: #ffffff; /* White text */
+  padding: 10px 15px; /* Adjust padding as needed */
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Add any additional styles for star icons here */
