@@ -15,6 +15,7 @@ import { Favorite as FavoriteIcon } from "@material-ui/icons";
 import "./HotelCards.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/Reducer/index";
+import StarRating from "../StarRating/StarRating";
 
 interface Hotels {
   _id: string;
@@ -26,6 +27,7 @@ interface Hotels {
   state: string;
   place: string;
   city: string;
+  reviews: Array<{ bookingId: string; comment: string; guestId: string; rating: number; _id: string }>; 
 }
 
 function HotelCards() {
@@ -41,6 +43,15 @@ function HotelCards() {
   const [favorites, setFavorites] = useState<string[]>([]);
   const navigate = useNavigate();
   const { PUBLIC } = ROUTES;
+
+  const calculateAverageRating = (reviews: any[]) => {
+    if (reviews.length === 0) {
+      return 0;
+    }
+
+    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+    return totalRating / reviews.length;
+  };
 
   const isFavorite = (id: string) => favorites.includes(id);
 
@@ -88,46 +99,36 @@ function HotelCards() {
     fetchGuestDetails();
   }, []);
 
+  const filteredHotels = hotels.filter((hotel) => {
+    const avgRating = calculateAverageRating(hotel.reviews);
+    return avgRating > 3;
+  });
+
+
   return (
     <div className="hotel-page-container">
-      <h1 className="hotel-list-heading">Our Featured Hotels</h1>
+      <h1 className="hotel-list-heading">Top Rated Hotels</h1>
 
       <div className="grid-container">
-        {hotels.map((hotel) => (
-          <Card
-            key={hotel._id}
-            className="card"
-            onClick={() =>
-              navigate(`${PUBLIC.GUEST_ROUTE.HOTEL_DETAIL_PAGE}/${hotel._id}`)
-            }
-          >
-            <CardMedia
-              component="div"
-              className="card-media"
-              style={{ backgroundImage: `url(${hotel.hotelImageLinks[0]})` }}
-            >
-              <IconButton
-                className="favorite-icon"
-                onClick={(event) => {
-                  event.stopPropagation(); // Stop the event propagation
-                  addOrRemoveFromFavourites(hotel._id);
-                }}
-              >
-                {isFavorite(hotel._id) ? (
-                  <FavoriteIcon style={{ color: "red" }} />
-                ) : (
-                  <FavoriteIcon style={{ color: "white" }} />
-                )}
-              </IconButton>
-            </CardMedia>
-
-            <CardHeader title={hotel.hotelName} className="card-header" />
-            <CardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
-                {hotel.city},{hotel.state}
-              </Typography>
-            </CardContent>
-          </Card>
+        {filteredHotels.map((hotel) => (
+         <Card key={hotel._id} className="card" onClick={() => navigate(`${PUBLIC.GUEST_ROUTE.HOTEL_DETAIL_PAGE}/${hotel._id}`)}>
+         <CardMedia component="div" className="card-media" style={{ backgroundImage: `url(${hotel.hotelImageLinks[0]})` }}>
+           <IconButton className="favorite-icon" onClick={(event) => { event.stopPropagation(); addOrRemoveFromFavourites(hotel._id); }}>
+             {isFavorite(hotel._id) ? (<FavoriteIcon style={{ color: "red" }} />) : (<FavoriteIcon style={{ color: "white" }} />)}
+           </IconButton>
+         </CardMedia>
+         <CardHeader title={hotel.hotelName} className="card-header" />
+         <CardContent className="card-content">
+           <div className="city-state">
+             <Typography variant="body2" color="textSecondary" component="p">
+               {hotel.city}, {hotel.state}
+             </Typography>
+           </div>
+           <div className="rating">
+                <StarRating rating={calculateAverageRating(hotel.reviews)} />
+              </div>
+         </CardContent>
+       </Card>
         ))}
       </div>
     </div>

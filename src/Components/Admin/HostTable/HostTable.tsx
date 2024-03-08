@@ -4,10 +4,12 @@ import adminAxios from "../../../Axios/adminAxios";
 import { API_URL } from "../../../Config/EndPoints";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/Reducer/index";
+import {useNavigate} from 'react-router-dom'
+import {ROUTES} from '../../../Routes/Routing'
 
 interface Host {
   _id: string;
-  username: string;
+  hotelName: string;
   email: string;
   phone: string;
   status: string;
@@ -51,6 +53,13 @@ function HostTable() {
     fetchHosts();
   }, []);
 
+  const navigate = useNavigate()
+  const {PUBLIC, PRIVATE} = ROUTES
+
+  const loadBookingsOfGuest = (id: string) => {
+    navigate(`${PRIVATE.ADMIN_ROUTE.BOOKINGS_OF_HOST}/${id}`);
+  }
+
   return (
     <div className="guest-table-container">
       <table className="guest-table">
@@ -61,13 +70,14 @@ function HostTable() {
             <th>Email</th>
             <th>Phone</th>
             <th>Status</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           {hosts.map((host, index) => (
             <tr key={host._id}>
               <td>{index + 1}</td>
-              <td>{host.username}</td>
+              <td>{host.hotelName}</td>
               <td>{host.email}</td>
               <td>{host.phone}</td>
               <td>
@@ -77,6 +87,10 @@ function HostTable() {
                 >
                   {host.status}
                 </button>
+              </td>
+              <td>
+              <button onClick={() => loadBookingsOfGuest(host._id)}>Bookings</button>
+
               </td>
             </tr>
           ))}

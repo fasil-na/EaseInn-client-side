@@ -10,6 +10,7 @@ import HotelList from "../Pages/Admin/HotelList/HotelList";
 import RequestList from "../Pages/Admin/RequestList/RequestList";
 import RequestDetails from "../Pages/Admin/RequestDetails/RequestDetails";
 import BookingsOfGuest from "../Pages/Admin/BookingsOfGuest/BookingsOfGuest";
+import BookingsOfHost from "../Pages/Admin/BookingsOfHost/BookingsOfHost";
 
 function AdminPrivateRoutes() {
   const { PRIVATE } = ROUTES;
@@ -25,6 +26,7 @@ function AdminPrivateRoutes() {
           <Route path={PRIVATE.ADMIN_ROUTE.REQUESTS} element={<RequestList />} />
           <Route path={`${PRIVATE.ADMIN_ROUTE.REQUEST_DETAILS}/:id`} element={<RequestDetails />} />
           <Route path={`${PRIVATE.ADMIN_ROUTE.BOOKINGS_OF_GUEST}/:id`} element={<BookingsOfGuest />} />
+          <Route path={`${PRIVATE.ADMIN_ROUTE.BOOKINGS_OF_HOST}/:id`} element={<BookingsOfHost />} />
         </>
       )  : null} 
       <Route path="*" element={<NotFound />} />

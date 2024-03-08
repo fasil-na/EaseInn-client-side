@@ -1,10 +1,10 @@
+import "./BookingsOfHostTable.css";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import "./BookingsOfGuestTable.css";
 import adminAxios from "../../../Axios/adminAxios";
 import { API_URL } from "../../../Config/EndPoints";
-import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/Reducer/index";
-import { useParams } from "react-router-dom";
 
 interface Guest {
   _id: string;
@@ -12,6 +12,7 @@ interface Guest {
   email: string;
   phone: string;
   status: string;
+  bookings: Booking[];
 }
 
 interface Booking {
@@ -24,9 +25,10 @@ interface Booking {
   totalAmount: number;
   bookingDate: string;
   bookingStatus: string;
+  hotelId: string; 
 }
 
-function BookingsOfGuestTable() {
+function BookingsOfHostTable() {
   const { adminToken } = useSelector((state: RootState) => state.AdminAuthState);
   const headers = {
     'Authorization': `Bearer ${adminToken}`,
@@ -34,32 +36,34 @@ function BookingsOfGuestTable() {
   };
 
   const [bookings, setBookings] = useState<Booking[]>([]);
+  const [guests, setGuests] = useState<Guest[]>([]);
 
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchGuestData = async () => {
+    const fetchGuests = async () => {
       try {
-        const response = await adminAxios.get(`${API_URL.FETCH_GUEST_DATA}/${id}`, { headers });
-        const bookingsData = response.data;
-  
-        if (bookingsData && bookingsData.length > 0) {
-  
-          const extractedBookings = bookingsData.map((item: any) => ({
-            ...item._doc, 
-            hotelName: item.hotelName || 'Unknown Hotel', 
-          }));
-  
-          setBookings(extractedBookings);
+        const response = await adminAxios.get(API_URL.FETCH_GUESTS, { headers });
+        const foundGuests = response.data.filter((guest: Guest) => {
+          return guest.bookings.some((booking: Booking) => booking.hotelId === id);
+        });
+
+        if (foundGuests.length > 0) {
+          const allBookings: Booking[] = [];
+          foundGuests.forEach((guest: Guest) => {
+            allBookings.push(...guest.bookings);
+          });
+
+          setBookings(allBookings);
+          setGuests(foundGuests);
         } else {
-          console.error("Guest data or bookings not found in the response.");
+          console.error("Guests not found with bookings for the specified hotelId.");
         }
       } catch (error) {
         console.error("Failed to fetch guests:", error);
       }
     };
-  
-    fetchGuestData();
+    fetchGuests();
   }, [id]);
 
   const getStatusStyle = (status: string) => {
@@ -74,7 +78,6 @@ function BookingsOfGuestTable() {
         return {};
     }
   };
-  
 
   return (
     <div className="guest-table-container">
@@ -82,7 +85,6 @@ function BookingsOfGuestTable() {
         <thead>
           <tr>
             <th>Sl.No</th>
-            <th>Hotel Name</th>
             <th>Checkin</th>
             <th>Checkout</th>
             <th>No of Guests</th>
@@ -93,12 +95,10 @@ function BookingsOfGuestTable() {
             <th></th>
           </tr>
         </thead>
-      
         <tbody>
           {bookings.map((booking, index) => (
             <tr key={booking._id}>
               <td>{index + 1}</td>
-              <td>{booking.hotelName}</td>
               <td>{new Date(booking.checkIn).toLocaleDateString()}</td>
               <td>{new Date(booking.checkOut).toLocaleDateString()}</td>
               <td>{booking.guestCount}</td>
@@ -114,4 +114,4 @@ function BookingsOfGuestTable() {
   );
 }
 
-export default BookingsOfGuestTable;
+export default BookingsOfHostTable;

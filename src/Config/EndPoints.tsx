@@ -37,6 +37,7 @@ export const API_URL = {
     FETCH_BOOKED_HOTELS:'/fetchBookedHotels',
     UPDATE_BOOKING_STATUS:'/updateBookingStatus',
     CANCEL_BOOKING:'/cancelBooking',
+    SUBMIT_RATING_AND_REVIEW:'/submitRatingAndReview',
 
 
 

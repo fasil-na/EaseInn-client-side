@@ -12,7 +12,7 @@ import {
   CardContent,
   Typography,
 } from "@material-ui/core";
-import { Star as StarIcon } from "@material-ui/icons";
+import StarRating from "../StarRating/StarRating";
 
 interface SearchResult {
   _id: string;
@@ -24,6 +24,13 @@ interface SearchResult {
   state: string;
   place: string;
   city: string;
+  reviews: Array<{
+    bookingId: string;
+    comment: string;
+    guestId: string;
+    rating: number;
+    _id: string;
+  }>;
 }
 
 function SearchResultCard() {
@@ -32,6 +39,8 @@ function SearchResultCard() {
   const itemsPerPage = 1;
 
   const [searchResult, setSearchResult] = useState<SearchResult[]>([]);
+  console.log(searchResult,"kkkkkkkkkkkkk");
+  
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,6 +50,15 @@ function SearchResultCard() {
     checkOutDate,
     guestCount,
   } = location.state;
+
+  const calculateAverageRating = (reviews: any[]) => {
+    if (reviews.length === 0) {
+      return 0;
+    }
+
+    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+    return totalRating / reviews.length;
+  };
 
   useEffect(() => {
     const fetchRequests = async () => {
@@ -101,11 +119,11 @@ function SearchResultCard() {
             <CardHeader title={hotel.hotelName} className="card-header" />
             <CardContent className="card-content">
               <Typography variant="h6" component="p" color="textSecondary">
-                {hotel.city},
+                {hotel.city},{hotel.state}
               </Typography>
-              <Typography variant="body2" component="p" color="textSecondary">
-                {hotel.state}, {hotel.place}
-              </Typography>
+              <div className="rating">
+                <StarRating rating={calculateAverageRating(hotel.reviews)} />
+              </div>
 
               
             </CardContent>
